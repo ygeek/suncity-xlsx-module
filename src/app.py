@@ -18,7 +18,9 @@ def read_xlsx():
 		# return jsonify(data=json.loads(s))
 		# return jsonify(data=df.to_json(orient='records', force_ascii=False))
 
-
+@app.route('/generate_template', methods=['GET'])
+def generate_template():
+	
 # @app.route('/encode_qr', methods=['POST'])
 # def encode_qr():
 # 	qr_code_string = request.json['qr_code_string']

@@ -14,7 +14,13 @@ def hello():
 def read_xlsx():
 		xlsx_file = request.files['file']
 		sheet_name = request.form['sheet_name'] or 0
-		df = pd.read_excel(xlsx_file, sheet_name=sheet_name, keep_default_na=None)
+		column_list = []
+		df_column = pd.read_excel(xlsx_file, sheet_name=sheet_name).columns
+		for i in df_column:
+				column_list.append(i)
+		converter = {col: str for col in column_list} 
+		
+		df = pd.read_excel(xlsx_file, sheet_name=sheet_name, keep_default_na=None, converters=converter)
 		df_dict = df.to_dict('records')
 		return jsonify(data=df_dict)
 
